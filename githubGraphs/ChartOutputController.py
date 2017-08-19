@@ -6,26 +6,46 @@ from BoxPlot import BoxPlot
 
 class ChartController(object):
 
-    def __init__(self, title, labels, values, values_two, chart_names):
+    def __init__(self, title):
         self.title = title
-        self.labels = labels
-        self.values = values
-        self.values_two = values_two
-        self.chart_names = chart_names
 
-    def get_pie_chart(self):
-        pie_chart = PieChart(self.title, self.labels, self.values)
-        pie_chart.give_graph()
+    def get_pie_chart(self, labels, values):
+        """
+        >>>get_pie_chart('title', ['label1', 'label2'], [1, 2])
 
-    def get_bar_graph(self):
-        bar_graph = BarGraph(self.title, self.labels, self.values, self.chart_names)
-        bar_graph.give_graph()
+        """
+        try:
+            pie_chart = PieChart(self.title, labels, values)
+            pie_chart.give_graph()
+        except (ValueError, IndexError):
+            print("Incorrect arguments in pie chart")
+        else:
+            print("Pie Chart Made!")
 
-    def get_scatter_graph(self):
-        scatter_graph = ScatterGraph(self.title, self.labels, self.values, self.values_two)
-        scatter_graph.give_graph()
+    def get_bar_graph(self, labels, values, chart_names):
+        try:
+            bar_graph = BarGraph(self.title, labels, values, chart_names)
+            bar_graph.give_graph()
+        except (ValueError, IndexError):
+            print("Incorrect arguments in bar graph")
+        else:
+            print("Bar Graph Made!")
 
-    def get_box_plot(self):
-        box_plot = BoxPlot(self.title, self.values, self.values_two, self.chart_names)
-        box_plot.give_graph()
+    def get_scatter_graph(self, labels, values, values_two):
+        try:
+            scatter_graph = ScatterGraph(self.title, labels, values, values_two)
+            scatter_graph.give_graph()
+        except (ValueError, IndexError):
+            print("Incorrect arguments in scatter graph")
+        else:
+            print("Scatter Graph Made!")
+
+    def get_box_plot(self, values, values_two, chart_names):
+        try:
+            box_plot = BoxPlot(self.title, values, values_two, chart_names)
+            box_plot.give_graph()
+        except (ValueError, IndexError):
+            print("Incorrect arguments in scatter plot")
+        else:
+            print("Box Plot Made!")
 
