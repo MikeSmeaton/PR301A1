@@ -1,11 +1,11 @@
 from ChartOutputController import ChartController
 from FileHandler import FileHandler
-"""
-file = FileHandler('written_file.txt')
-file.write_file()"""
+
+file = FileHandler('written_file.csv')
+file_array = file.get_file()
 
 bar = ChartController('This is a bar graph')
-bar.get_bar_graph(['Oxygen', 'Hydrogen', 'Carbon_Dioxide', 'Nitrogen'], [4500, 2500, 1053, 500], ['words name', 'Numbers Names'])
+bar.get_bar_graph(file_array[0], file_array[1], file_array[2])
 
 pie = ChartController('This is a pie chart')
 pie.get_pie_chart(['Oxygen', 'Hydrogen', 'Carbon_Dioxide', 'Nitrogen'], [4500, 2500, 1053, 500])

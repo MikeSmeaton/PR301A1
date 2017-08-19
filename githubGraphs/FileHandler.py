@@ -1,14 +1,26 @@
+import csv
+
+
 class FileHandler(object):
     def __init__(self, file):
         self.file = file
 
     def get_file(self):
-        open_file = open(self.file, "r")
-        print("Opening: ", open_file.name)
-        file_array = open_file.read()
-        print(file_array)
-        open_file.close()
-        return file_array
+        with open(self.file) as csv_file:
+            reader = csv.reader(csv_file)
+            value1 = []
+            value2 = []
+            value3 = []
+            for row in reader:
+                row1 = row[0]
+                row2 = row[1]
+                row3 = row[2]
+
+                value1.append(row1)
+                value2.append(row2)
+                value3.append(row3)
+
+            return [value1, value2, value3]
 
     def write_file(self):
         open_file = open(self.file, "w")

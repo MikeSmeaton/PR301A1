@@ -36,3 +36,8 @@ class BarGraph(object):
 
         fig = go.Figure(data=data, layout=layout)
         plotly.offline.plot(fig, filename='bar-graph.html')
+
+    def test_title(self):
+        return self.title
+
+

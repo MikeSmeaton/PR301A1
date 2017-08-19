@@ -4,7 +4,7 @@ import plotly.graph_objs as go
 
 class ScatterGraph(object):
 
-    def __init__(self,title, labels, values, values_two):
+    def __init__(self, title, labels, values, values_two):
         self.title = title
         self.labels = labels
         self.values = values
@@ -15,7 +15,6 @@ class ScatterGraph(object):
             x=self.values,
             y=self.values_two,
             mode='markers'
-            #name = 'markers'
         )
 
         data = [trace]

@@ -14,7 +14,7 @@ class BoxPlot(object):
 
         trace0 = go.Box(
             y=self.values,
-            name = self.chart_names[0]
+            name=self.chart_names[0]
         )
         trace1 = go.Box(
             y=self.values_two,

@@ -10,10 +10,6 @@ class ChartController(object):
         self.title = title
 
     def get_pie_chart(self, labels, values):
-        """
-        >>>get_pie_chart('title', ['label1', 'label2'], [1, 2])
-
-        """
         try:
             pie_chart = PieChart(self.title, labels, values)
             pie_chart.give_graph()
