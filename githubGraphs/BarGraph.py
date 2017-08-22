@@ -2,6 +2,7 @@ import plotly
 import plotly.graph_objs as go
 import os.path
 
+
 class BarGraph(object):
 
     def __init__(self, title,  labels, values, chart_names):

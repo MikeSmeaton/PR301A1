@@ -52,4 +52,3 @@ class ChartController(object):
         else:
             print("Box Plot Made!")
             return True
-

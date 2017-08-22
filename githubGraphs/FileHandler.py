@@ -32,4 +32,3 @@ class FileHandler(object):
         open_file.write(input_content)
         open_file.close()
         return input_content
-

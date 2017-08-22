@@ -13,7 +13,7 @@ class TestUM(unittest.TestCase):
 
     def test_pie_title(self):
         pie_chart = PieChart('pie title', ['one', 'two'], [1, 2])
-        self.assertEqual(pie_chart.test_title(),'pie title')
+        self.assertEqual(pie_chart.test_title(), 'pie title')
 
     def test_pie_labels(self):
         pie_chart = PieChart('pie title', ['one', 'two'], [1, 2])
@@ -25,7 +25,7 @@ class TestUM(unittest.TestCase):
 
     def test_bar_title(self):
         bar_graph = BarGraph('bar title', ['one', 'two'], [1, 2], ['chart name 1', 'chart name 2'])
-        self.assertEqual(bar_graph.test_title(),'bar title')
+        self.assertEqual(bar_graph.test_title(), 'bar title')
 
     def test_bar_labels(self):
         bar_graph = BarGraph('bar title', ['one', 'two'], [1, 2], ['chart name 1', 'chart name 2'])

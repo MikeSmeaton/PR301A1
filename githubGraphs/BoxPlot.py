@@ -44,4 +44,3 @@ class BoxPlot(object):
 
     def test_names(self):
         return self.chart_names
-
