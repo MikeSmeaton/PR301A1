@@ -1,6 +1,6 @@
 import plotly
 import plotly.graph_objs as go
-
+import os.path
 
 class BarGraph(object):
 
@@ -35,9 +35,19 @@ class BarGraph(object):
         )
 
         fig = go.Figure(data=data, layout=layout)
-        plotly.offline.plot(fig, filename='bar-graph.html')
+        plotly.offline.plot(fig, filename=self.title + '.html')
+
+        if(os.path.exists(self.title + '.html')):
+            return True
 
     def test_title(self):
         return self.title
 
+    def test_labels(self):
+        return self.labels
 
+    def test_values(self):
+        return self.values
+
+    def test_names(self):
+        return self.chart_names

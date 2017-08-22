@@ -7,6 +7,11 @@ class FileHandler(object):
 
     def get_file(self):
         with open(self.file) as csv_file:
+            """
+            >>> file = FileHandler('written_file.csv')
+            >>> file.get_file()
+            [['Oxygen', 'Hydrogen', 'Carbon_Dioxide'], ['4500', '2500', '1053'], ['words name', 'Number Names', 'None']]
+            """
             reader = csv.reader(csv_file)
             value1 = []
             value2 = []
@@ -22,10 +27,9 @@ class FileHandler(object):
 
             return [value1, value2, value3]
 
-    def write_file(self):
+    def write_file(self, input_content):
         open_file = open(self.file, "w")
-        writing = input("Write file content: ")
-        open_file.write(writing)
-        print(writing)
+        open_file.write(input_content)
         open_file.close()
+        return input_content
 

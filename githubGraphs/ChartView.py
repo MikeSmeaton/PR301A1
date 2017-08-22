@@ -3,6 +3,7 @@ from FileHandler import FileHandler
 
 file = FileHandler('written_file.csv')
 file_array = file.get_file()
+print(file_array)
 
 bar = ChartController('This is a bar graph')
 bar.get_bar_graph(file_array[0], file_array[1], file_array[2])

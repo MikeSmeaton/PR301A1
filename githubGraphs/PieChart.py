@@ -1,5 +1,6 @@
 import plotly.graph_objs as go
 import plotly
+import os.path
 
 
 class PieChart(object):
@@ -19,10 +20,16 @@ class PieChart(object):
         )
 
         fig = go.Figure(data=data, layout=layout)
-        plotly.offline.plot(fig, filename='pie-chart.html')
+        plotly.offline.plot(fig, filename=self.title + '.html')
 
+        if (os.path.exists(self.title + '.html')):
+            return True
 
+    def test_title(self):
+        return self.title
 
-"""LAYOUT:
-pie = PieChart(['Oxygen', 'Hydrogen', 'Carbon_Dioxide', 'Nitrogen'], [4500, 2500, 1053, 500])
-pie.give_graph()"""
+    def test_labels(self):
+        return self.labels
+
+    def test_values(self):
+        return self.values

@@ -1,5 +1,6 @@
 import plotly
 import plotly.graph_objs as go
+import os.path
 
 
 class ScatterGraph(object):
@@ -36,4 +37,19 @@ class ScatterGraph(object):
         )
 
         fig = go.Figure(data=data, layout=layout)
-        plotly.offline.plot(fig, filename='scatter.html')
+        plotly.offline.plot(fig, filename=self.title + '.html')
+
+        if (os.path.exists(self.title + '.html')):
+            return True
+
+    def test_title(self):
+        return self.title
+
+    def test_labels(self):
+        return self.labels
+
+    def test_values(self):
+        return self.values
+
+    def test_values_two(self):
+        return self.values_two
