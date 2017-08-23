@@ -4,33 +4,56 @@ from Validator import Validator
 from Entry import Entry
 from SQLite import SQLite
 
+
 class Controller(object):
     def __init__(self):
-        self.inputCSVArray = ""
+        self.inputCSVArray = []
         self.db = SQLite()
 
+    # --- Database methods ---
+    def init_db(self):
+        self.db.set_values(self.inputCSVArray)
+        self.db.open_db()
+        self.db.purge_entry_table()
+        self.db.sql_create_entry()
+        self.db.connection.commit()
+        self.db.close_db()
+
+    def populate_db(self):
+        self.db.open_db()
+        self.db.set_rows()
+        self.db.connection.commit()
+        self.db.close_db()
+
+
+    # --- Graphs hard coded methods ---
     def graph_pi_gender(self, male_female_array):
         test_pie = ChartController("Genders of Sales People")
         test_pie.get_pie_chart(["Male", "Female"], male_female_array)
 
+
+    # --- csv reader ---
     def read_from_csv(self):
         csv = CSVReader()
         self.inputCSVArray = csv.read()
 
-    def read_from_csv_changes(self):
+    def read_from_csv_filename(self, filename):
         csv = CSVReader()
-        csv.set_delimiter()
-        csv.set_file_location()
+        csv.file_location = filename
         self.inputCSVArray = csv.read()
-        pass
 
-    def output_array(self):
-        print(self.inputCSVArray)
+    def read_from_csv_filename_delimiter(self, filename, delimiter):
+        csv = CSVReader()
+        csv.file_location = filename
+        csv.var = delimiter
+        self.inputCSVArray = csv.read()
+
 
     def commit_input(self, input_array):
         validated = self.run_validator(input_array)
         self.run_db()
 
+    # --- validator ---
     def run_validator(self, input_array):
         empid, gender, age, sales, bmi, salary, birthday = ""
         x = 0
@@ -45,14 +68,12 @@ class Controller(object):
             birthday = input_array[x][6]
             v = Validator(empid, gender, age, sales, bmi, salary, birthday)
             entry_outputs.append(v.validate())
-        self.convert_entryobject_to_array(entry_outputs)
-        output_array = self.convert_entryobject_to_array(entry_outputs)
-
-    def initialise_db(self, validator_array):
-        self.db.set_rows(validator_array)
+        self.convert_entry_collection_to_array(entry_outputs)
+        output_array = self.convert_entry_collection_to_array(entry_outputs)
 
 
-    def convert_entryobject_to_array(self, entry):
+    # --- converter for entry to array ---
+    def convert_entry_collection_to_array(self, entry):
         result = []
         x = 0;
         while x < len(entry):
@@ -65,9 +86,12 @@ class Controller(object):
             result[x][6] = entry.get_birthday()
         return result
 
-    def convert_array_to_entryobject(self, array):
+    def convert_array_to_entry_collection(self, array):
         #take array and convert to entry list
         pass
+
+
+
 
 # used for testing purposes. Main method will be in the CLI console view.
 if __name__ == "__main__":
