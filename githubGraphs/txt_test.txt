@@ -1,0 +1,1 @@
+Oxygen,Hydrogen,Carbon_Dioxide ^ 4500,2500,1053 ^ words name,Number Names

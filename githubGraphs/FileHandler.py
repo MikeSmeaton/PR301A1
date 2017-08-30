@@ -1,31 +1,18 @@
-import csv
-
-
 class FileHandler(object):
     def __init__(self, file):
         self.file = file
 
     def get_file(self):
-        with open(self.file) as csv_file:
-            """
-            >>> file = FileHandler('written_file.csv')
-            >>> file.get_file()
-            [['Oxygen', 'Hydrogen', 'Carbon_Dioxide'], ['4500', '2500', '1053'], ['words name', 'Number Names', 'None']]
-            """
-            reader = csv.reader(csv_file)
-            value1 = []
-            value2 = []
-            value3 = []
-            for row in reader:
-                row1 = row[0]
-                row2 = row[1]
-                row3 = row[2]
+        with open(self.file) as txt_file:
+            half_split = []
+            for line in txt_file:
+                count = 0
+                half_split = line.split(' ^ ')
+                for arrays in half_split:
+                    half_split[count] = half_split[count].split(',')
+                    count += 1
 
-                value1.append(row1)
-                value2.append(row2)
-                value3.append(row3)
-
-            return [value1, value2, value3]
+            return half_split
 
     def write_file(self, input_content):
         open_file = open(self.file, "w")
